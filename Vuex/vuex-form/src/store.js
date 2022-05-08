@@ -14,8 +14,8 @@ export default new Vuex.Store({
   },
   // computed == getters
   getters: {
-    allUsersCount: function () {
-      return this.state.allUsers.length;
+    allUsersCount: function (state) {
+      return state.allUsers.length;
     },
   },
   mutations: {},
