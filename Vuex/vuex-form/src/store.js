@@ -14,8 +14,20 @@ export default new Vuex.Store({
   },
   // computed == getters
   getters: {
-    allUsersCount: function (state) {
+    allUsersCount: (state) => {
       return state.allUsers.length;
+    },
+    countOfSouel: (state) => {
+      // let count = 0;
+      // state.allUsers.forEach((user) => {
+      //   if (user.address === "Seoul") count++;
+      // }
+      // return count;
+      return state.allUsers.filter((user) => user.address === "Seoul").length;
+    },
+    percentOfSouel: (state, getters) => {
+      // return (state.allUsers.filter((user) => user.address === "Seoul").length / state.allUsers.length) * 100;
+      return Math.round((getters.countOfSouel / state.allUsers.length) * 100);
     },
   },
   mutations: {},
