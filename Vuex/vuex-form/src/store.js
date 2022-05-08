@@ -30,6 +30,13 @@ export default new Vuex.Store({
       return Math.round((getters.countOfSouel / state.allUsers.length) * 100);
     },
   },
-  mutations: {},
+  mutations: {
+    // mutations == methods 동기
+    // commit 은 mutations 에서 사용하는 함수로 위임하다, 위탁하다,
+    // payload 은 mutations 에서 사용하는 값이다. 짐같은 값이다.
+    addUsers: (state, payload) => {
+      state.allUsers.push(payload);
+    },
+  },
   actions: {},
 });
