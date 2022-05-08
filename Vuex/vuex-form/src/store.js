@@ -14,10 +14,41 @@ export default new Vuex.Store({
   },
   // computed == getters
   getters: {
-    allUsersCount: function (state) {
+    allUsersCount: (state) => {
       return state.allUsers.length;
     },
+    countOfSouel: (state) => {
+      // let count = 0;
+      // state.allUsers.forEach((user) => {
+      //   if (user.address === "Seoul") count++;
+      // }
+      // return count;
+      return state.allUsers.filter((user) => user.address === "Seoul").length;
+    },
+    percentOfSouel: (state, getters) => {
+      // return (state.allUsers.filter((user) => user.address === "Seoul").length / state.allUsers.length) * 100;
+      return Math.round((getters.countOfSouel / state.allUsers.length) * 100);
+    },
   },
-  mutations: {},
-  actions: {},
+  mutations: {
+    // mutations == methods 동기
+    // commit 은 mutations 에서 사용하는 함수로 위임하다, 위탁하다,
+    // payload 은 mutations 에서 사용하는 값이다. 짐같은 값이다.
+    addUsers: (state, payload) => {
+      state.allUsers.push(payload);
+    },
+  },
+  actions: {
+    // actions == methods 비동기
+    // addUser: (context) => {
+    //   context.commit("addUsers", payload);
+    // },
+    // context의 구조분해
+    signUpUser: ({ commit }, payload) => {
+      // context, payload
+      // { commit }, payload :context의 구조분해
+      // ! commit 은 mutations 에서 사용하는 함수로 위임하다, 위탁하다, 사용하는 것을 여기서 사용한다.
+      commit("addUsers", payload);
+    },
+  },
 });
