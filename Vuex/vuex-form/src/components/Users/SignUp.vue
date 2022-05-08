@@ -12,7 +12,8 @@
 
 <script>
 import { EventBus } from "@/main.js";
-import { mapMutations } from "vuex";
+// import { mapMutations } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   data() {
@@ -25,7 +26,8 @@ export default {
     };
   },
   methods: {
-    ...mapMutations(["addUsers"]),
+    // ...mapMutations(["addUsers"]),
+    ...mapActions(["signUpUser"]),
     signUp() {
       let userObj = {
         userId: this.userId,
@@ -34,10 +36,17 @@ export default {
         address: this.address,
         src: this.src,
       };
+      // * EventBus
       // EventBus.$emit("signUp", userObj);
+
+      // * Mutations
       // userObj => payload 위치로 온다.
       // this.$store.commit("addUsers", userObj);
-      this.addUsers(userObj);
+      // this.addUsers(userObj);
+
+      // * Actions
+      // this.$store.dispatch("signUpUser", userObj);
+      this.signUpUser(userObj);
       this.clearForm();
     },
     clearForm() {

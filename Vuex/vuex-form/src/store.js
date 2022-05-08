@@ -38,5 +38,17 @@ export default new Vuex.Store({
       state.allUsers.push(payload);
     },
   },
-  actions: {},
+  actions: {
+    // actions == methods 비동기
+    // addUser: (context) => {
+    //   context.commit("addUsers", payload);
+    // },
+    // context의 구조분해
+    signUpUser: ({ commit }, payload) => {
+      // context, payload
+      // { commit }, payload :context의 구조분해
+      // ! commit 은 mutations 에서 사용하는 함수로 위임하다, 위탁하다, 사용하는 것을 여기서 사용한다.
+      commit("addUsers", payload);
+    },
+  },
 });
