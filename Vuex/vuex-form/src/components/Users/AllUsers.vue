@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>All Users</h1>
+    <h1>All Users({{ $store.state.allUsers.length }})</h1>
     <v-list two-line>
       <v-list-tile v-for="(user, index) in $store.state.allUsers" :key="index" avatar>
         <v-list-tile-avatar color="grey lighten-3">
